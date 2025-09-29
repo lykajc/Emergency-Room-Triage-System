@@ -6,30 +6,35 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 
-class Patients{
-	private String name;
-	private String condition;
-	private String arr;
-	private int priority;
 
-	public Patients(int priority, String name, String condition, String arr) {
-		this.priority = priority;
-		this.name = name;
-		this.condition = condition;
-		this.arr = arr;
-	}
+class Patients implements Comparable<Patients> {
+    String name;
+    int priority;
+    String condition;
+    String arr;
+    
+    public Patients(String name, int prio, String condition, String arr) {
+    	this.name = name;
+    	this.priority = priority;
+    	this.condition = condition;
+    	this.arr = arr;
+    	
+    }
 
-	public int compareTo(Patients other) {
-		if (this.priority != other.priority) {
-			return Integer.compare(this.priority, other.priority);
-		}
-		return this.arr.compareTo(other.arr);
-	}
+    @Override
+    public int compareTo(Patients other) {
+        if (this.priority != other.priority) {
+            return Integer.compare(this.priority, other.priority);
+        }
+        return this.arr.compareTo(other.arr);
+    }
 
-	public String toString() {
-		return "["+ priority +"]" + name + " - " + condition + "(" + arr + ")";
-	}
+    @Override
+    public String toString() {
+        return "[" + priority + "]" + name + " - " + condition + "(" + arr + ")";
+    }
 }
+
 
 class EmQueue{
 	private PriorityQueue<Patients>queue;
@@ -39,7 +44,7 @@ class EmQueue{
 
 	public void arr(String name, int priority, String condition, String time) {
 
-		Patients p = new Patients(priority, name, condition, time);
+		Patients p = new Patients(time, priority, time, time);
 
 		queue.add(p);
 
